@@ -5,21 +5,14 @@ import { ExternalLink, Github, Youtube, Linkedin, FolderOpen, Image } from "luci
 const PastEventsSection = () => {
   const pastEvents = [
     {
-      year: "2024",
-      title: "ML Efficient 3.0",
-      description: "Focused on transformer optimization and LLM deployment strategies",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
-      highlights: ["500+ Participants", "20+ Workshops", "Industry Mentors"],
-    },
-    {
-      year: "2023",
+      year: "2025",
       title: "ML Efficient 2.0",
       description: "Deep dive into neural network pruning and quantization techniques",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
       highlights: ["350+ Participants", "15+ Sessions", "Hackathon Winners"],
     },
     {
-      year: "2022",
+      year: "2024",
       title: "ML Efficient 1.0",
       description: "Inaugural edition exploring efficient ML fundamentals",
       image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
