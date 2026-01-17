@@ -21,7 +21,9 @@ const RegistrationSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    college: "",
+    branch: "",
+    section: "",
+    regNumber: "",
     year: "",
     domain: "",
   });
@@ -30,10 +32,10 @@ const RegistrationSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.college || !formData.year || !formData.domain) {
+    if (!formData.name || !formData.email || !formData.branch || !formData.section || !formData.regNumber || !formData.year) {
       toast({
         title: "Missing Information",
-        description: "Please fill in all fields to register.",
+        description: "Please fill in all required fields.",
         variant: "destructive",
       });
       return;
@@ -46,9 +48,11 @@ const RegistrationSection = () => {
         {
           name: formData.name,
           email: formData.email,
-          college: formData.college,
+          branch: formData.branch,
+          section: formData.section,
+          reg_number: formData.regNumber,
           year: formData.year,
-          domain_interest: formData.domain,
+          domain_interest: formData.domain || null,
         },
       ]);
 
@@ -103,7 +107,9 @@ const RegistrationSection = () => {
                   setFormData({
                     name: "",
                     email: "",
-                    college: "",
+                    branch: "",
+                    section: "",
+                    regNumber: "",
                     year: "",
                     domain: "",
                   });
@@ -175,16 +181,43 @@ const RegistrationSection = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="college">College / University</Label>
+                <Label htmlFor="branch">Branch</Label>
                 <Input
-                  id="college"
-                  placeholder="Enter your institution name"
-                  value={formData.college}
+                  id="branch"
+                  placeholder="e.g., CSE, ECE, IT"
+                  value={formData.branch}
                   onChange={(e) =>
-                    setFormData({ ...formData, college: e.target.value })
+                    setFormData({ ...formData, branch: e.target.value })
                   }
                   className="bg-background/50"
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="section">Section</Label>
+                  <Input
+                    id="section"
+                    placeholder="e.g., A, B, C"
+                    value={formData.section}
+                    onChange={(e) =>
+                      setFormData({ ...formData, section: e.target.value })
+                    }
+                    className="bg-background/50"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="regNumber">Registration Number</Label>
+                  <Input
+                    id="regNumber"
+                    placeholder="e.g., 21BCE1234"
+                    value={formData.regNumber}
+                    onChange={(e) =>
+                      setFormData({ ...formData, regNumber: e.target.value })
+                    }
+                    className="bg-background/50"
+                  />
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -209,7 +242,7 @@ const RegistrationSection = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="domain">Domain Interest</Label>
+                <Label htmlFor="domain">Domain Interest <span className="text-muted-foreground text-sm">(Optional)</span></Label>
                 <Select
                   value={formData.domain}
                   onValueChange={(value) =>
