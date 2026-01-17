@@ -72,22 +72,22 @@ const TeamSection = () => {
 
         {/* Team Tabs */}
         <Tabs defaultValue="final" className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12 bg-muted/50">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12 bg-muted/50 h-auto p-1">
             <TabsTrigger
               value="final"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              className="py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
             >
               Final Year
             </TabsTrigger>
             <TabsTrigger
               value="prefinal"
-              className="data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground"
+              className="py-2.5 data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground data-[state=active]:shadow-md"
             >
               Pre-Final Year
             </TabsTrigger>
             <TabsTrigger
               value="second"
-              className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground"
+              className="py-2.5 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md"
             >
               Second Year
             </TabsTrigger>

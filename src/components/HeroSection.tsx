@@ -3,8 +3,8 @@ import CountdownTimer from "./CountdownTimer";
 import { ArrowDown, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
-  // Default target date - user will provide the actual date
-  const eventDate = new Date("2025-03-15T09:00:00");
+  // Event starts January 24, 2026 at 10:00 AM IST
+  const eventDate = new Date("2026-01-24T10:00:00+05:30");
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
