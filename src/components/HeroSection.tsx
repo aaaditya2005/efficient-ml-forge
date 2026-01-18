@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import CountdownTimer from "./CountdownTimer";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, AlertCircle } from "lucide-react";
 
 const HeroSection = () => {
   // Event starts January 24, 2026 at 10:00 AM IST
   const eventDate = new Date("2026-01-24T10:00:00+05:30");
+  // Registration deadline: January 23, 2026 at 10:00 AM IST
+  const registrationDeadline = new Date("2026-01-23T10:00:00+05:30");
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -30,20 +32,34 @@ const HeroSection = () => {
         {/* Main Title */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
           <span className="text-gradient-cyan">ML</span>{" "}
-          <span className="text-foreground">Efficient</span>
+          <span className="text-foreground">Efficient</span>{" "}
+          <span className="text-gradient-purple">3.0</span>
         </h1>
 
         {/* Tagline */}
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12">
-          Optimizing Intelligence. Building the Future.
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4">
+          "AI won't replace you, someone using AI will"
+        </p>
+        
+        {/* Event Date */}
+        <p className="text-lg text-primary font-medium mb-8">
+          24-25 January 2026 | Starts at 10:00 AM
         </p>
 
         {/* Countdown Timer */}
-        <div className="mb-12">
+        <div className="mb-8">
           <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">
             Event Starts In
           </p>
           <CountdownTimer targetDate={eventDate} />
+        </div>
+
+        {/* Registration Deadline Notice */}
+        <div className="inline-flex items-center gap-2 glass-card rounded-lg px-4 py-2 mb-8 border border-destructive/30">
+          <AlertCircle className="w-4 h-4 text-destructive" />
+          <span className="text-sm text-muted-foreground">
+            Registration closes: <span className="text-foreground font-medium">23 Jan, 10:00 AM</span>
+          </span>
         </div>
 
         {/* CTA Buttons */}

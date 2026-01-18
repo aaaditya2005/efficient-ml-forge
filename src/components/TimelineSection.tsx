@@ -1,13 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  Sparkles,
-  Mic,
   Wrench,
-  Users,
   Code,
-  UserCheck,
-  Presentation,
-  Trophy,
+  Brain,
+  Bot,
+  Cpu,
+  Zap,
+  Sparkles,
+  Award,
 } from "lucide-react";
 
 interface TimelineEvent {
@@ -27,69 +27,62 @@ const TimelineSection = () => {
   const schedule: DaySchedule[] = [
     {
       day: "Day 1",
-      date: "Innovation & Learning",
+      date: "24 January 2026",
       events: [
         {
-          time: "9:00 AM",
-          title: "Inauguration Ceremony",
+          time: "10:00 AM",
+          title: "Installation & Python Basics",
           description:
-            "Official opening with keynote address from industry leaders and academic heads",
-          icon: Sparkles,
-        },
-        {
-          time: "10:30 AM",
-          title: "Keynote Session",
-          description:
-            "Expert insights on the future of efficient ML systems and emerging trends",
-          icon: Mic,
-        },
-        {
-          time: "2:00 PM",
-          title: "Hands-on ML Workshop",
-          description:
-            "Interactive session on model optimization, quantization, and deployment strategies",
+            "Set up your development environment and learn Python fundamentals for ML/AI development",
           icon: Wrench,
         },
         {
-          time: "5:00 PM",
-          title: "Networking Session",
+          time: "Slot 2",
+          title: "ML, DL & Handwritten Digits Project",
           description:
-            "Connect with peers, mentors, and industry professionals in a relaxed setting",
-          icon: Users,
+            "Learn basics of Machine Learning and Deep Learning with a hands-on project building a handwritten digits recognition system",
+          icon: Brain,
+        },
+        {
+          time: "If Time Permits",
+          title: "RAG-Based AI Agent",
+          description:
+            "Introduction to building Retrieval Augmented Generation (RAG) based AI agents",
+          icon: Bot,
         },
       ],
     },
     {
       day: "Day 2",
-      date: "Competition & Celebration",
+      date: "25 January 2026",
       events: [
         {
-          time: "9:00 AM",
-          title: "Hackathon / ML Challenge",
+          time: "10:00 AM",
+          title: "RAG Project Continuation",
           description:
-            "24-hour coding challenge to build efficient ML solutions for real-world problems",
+            "Continue building and refining the RAG-based AI agent project with advanced techniques",
           icon: Code,
         },
         {
-          time: "1:00 PM",
-          title: "Mentorship Rounds",
+          time: "Slot 2",
+          title: "Automation Concepts & Project",
           description:
-            "One-on-one guidance sessions with industry experts and research scholars",
-          icon: UserCheck,
+            "Learn automation fundamentals and build a practical automation project",
+          icon: Cpu,
         },
         {
-          time: "3:30 PM",
-          title: "Project Presentations",
+          time: "If Time Permits",
+          title: "Introduction to Gen AI",
           description:
-            "Showcase your ML projects and receive feedback from an expert panel",
-          icon: Presentation,
+            "Brief overview of Generative AI concepts and applications in modern development",
+          icon: Sparkles,
         },
         {
-          time: "6:00 PM",
-          title: "Closing Ceremony & Results",
+          time: "Closing",
+          title: "Certificates Distribution",
           description:
-            "Award distribution, hackathon winners announcement, and closing remarks",
-          icon: Trophy,
+            "Certificate distribution ceremony for all participants",
+          icon: Award,
         },
       ],
     },
@@ -107,7 +100,7 @@ const TimelineSection = () => {
             2-Day <span className="text-gradient-cyan">Timeline</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Two days packed with learning, innovation, and networking opportunities
+            Two days packed with learning Python, ML, DL, AI Agents, Automation and Gen AI
           </p>
         </div>
 
