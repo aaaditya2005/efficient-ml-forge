@@ -21,6 +21,7 @@ const RegistrationSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone_number: "",
     branch: "",
     section: "",
     regNumber: "",
@@ -29,13 +30,40 @@ const RegistrationSection = () => {
   });
   const { toast } = useToast();
 
+  const branches = [
+    "Computer Science & Engineering",
+    "Information Technology",
+    "Electronics & Communication",
+    "Electrical Engineering",
+    "Mechanical Engineering",
+    "Civil Engineering",
+    "Chemical Engineering",
+    "Biotechnology",
+    "Metallurgical & Materials Engineering",
+    "Other",
+  ];
+
+  const validatePhoneNumber = (phone: string) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.branch || !formData.section || !formData.regNumber || !formData.year) {
+    if (!formData.name || !formData.email || !formData.phone_number || !formData.branch || !formData.year) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!validatePhoneNumber(formData.phone_number)) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid 10-digit phone number.",
         variant: "destructive",
       });
       return;
@@ -46,11 +74,12 @@ const RegistrationSection = () => {
     try {
       const { error } = await supabase.from("registrations").insert([
         {
-          name: formData.name,
-          email: formData.email,
+          name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          phone_number: formData.phone_number.trim(),
           branch: formData.branch,
-          section: formData.section,
-          reg_number: formData.regNumber,
+          section: formData.section.trim() || null,
+          reg_number: formData.regNumber.trim() || null,
           year: formData.year,
           domain_interest: formData.domain || null,
         },
@@ -70,7 +99,7 @@ const RegistrationSection = () => {
 
       toast({
         title: "Registration Successful! 🎉",
-        description: "Welcome to ML Efficient! Check your email for confirmation.",
+        description: "Welcome to ML Efficient 3.0! See you on 24-25 January 2026.",
       });
     } catch (error: any) {
       console.error("Registration error:", error);
@@ -97,8 +126,7 @@ const RegistrationSection = () => {
                 You're Registered!
               </h3>
               <p className="text-muted-foreground mb-6">
-                Thank you for registering for ML Efficient. We'll send you all the
-                details to your email soon.
+                Thank you for registering for ML Efficient 3.0. See you on 24-25 January 2026!
               </p>
               <Button
                 variant="outline"
@@ -107,6 +135,7 @@ const RegistrationSection = () => {
                   setFormData({
                     name: "",
                     email: "",
+                    phone_number: "",
                     branch: "",
                     section: "",
                     regNumber: "",
@@ -133,7 +162,7 @@ const RegistrationSection = () => {
             Join Us
           </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Register for <span className="text-gradient-cyan">ML Efficient</span>
+            Register for <span className="text-gradient-cyan">ML Efficient 3.0</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Secure your spot at the most anticipated ML event of the year
@@ -148,13 +177,13 @@ const RegistrationSection = () => {
               <CardTitle className="text-lg">Registration Form</CardTitle>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              Registration Deadline: <span className="text-primary font-medium">March 10, 2025</span>
+              Registration Deadline: <span className="text-destructive font-medium">23 January 2026, 10:00 AM</span>
             </p>
           </CardHeader>
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">Full Name <span className="text-destructive">*</span></Label>
                 <Input
                   id="name"
                   placeholder="Enter your full name"
@@ -163,11 +192,12 @@ const RegistrationSection = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   className="bg-background/50"
+                  maxLength={100}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">Email Address <span className="text-destructive">*</span></Label>
                 <Input
                   id="email"
                   type="email"
@@ -177,20 +207,45 @@ const RegistrationSection = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="bg-background/50"
+                  maxLength={255}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="branch">Branch</Label>
+                <Label htmlFor="phone_number">Phone Number <span className="text-destructive">*</span></Label>
                 <Input
-                  id="branch"
-                  placeholder="e.g., CSE, ECE, IT"
-                  value={formData.branch}
-                  onChange={(e) =>
-                    setFormData({ ...formData, branch: e.target.value })
-                  }
+                  id="phone_number"
+                  type="tel"
+                  placeholder="10-digit phone number"
+                  value={formData.phone_number}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                    setFormData({ ...formData, phone_number: value });
+                  }}
                   className="bg-background/50"
+                  maxLength={10}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="branch">Branch <span className="text-destructive">*</span></Label>
+                <Select
+                  value={formData.branch}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, branch: value })
+                  }
+                >
+                  <SelectTrigger className="bg-background/50">
+                    <SelectValue placeholder="Select your branch" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {branches.map((branch) => (
+                      <SelectItem key={branch} value={branch}>
+                        {branch}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -204,24 +259,26 @@ const RegistrationSection = () => {
                       setFormData({ ...formData, section: e.target.value })
                     }
                     className="bg-background/50"
+                    maxLength={5}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="regNumber">Registration Number</Label>
                   <Input
                     id="regNumber"
-                    placeholder="e.g., 21BCE1234"
+                    placeholder="e.g., 22XXXX123"
                     value={formData.regNumber}
                     onChange={(e) =>
                       setFormData({ ...formData, regNumber: e.target.value })
                     }
                     className="bg-background/50"
+                    maxLength={20}
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="year">Year of Study</Label>
+                <Label htmlFor="year">Year of Study <span className="text-destructive">*</span></Label>
                 <Select
                   value={formData.year}
                   onValueChange={(value) =>
@@ -236,35 +293,22 @@ const RegistrationSection = () => {
                     <SelectItem value="2nd Year">2nd Year</SelectItem>
                     <SelectItem value="3rd Year">3rd Year</SelectItem>
                     <SelectItem value="4th Year">4th Year</SelectItem>
-                    <SelectItem value="PG / Research">PG / Research</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="domain">Domain Interest <span className="text-muted-foreground text-sm">(Optional)</span></Label>
-                <Select
+                <Input
+                  id="domain"
+                  placeholder="e.g., ML, AI, Automation"
                   value={formData.domain}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, domain: value })
+                  onChange={(e) =>
+                    setFormData({ ...formData, domain: e.target.value })
                   }
-                >
-                  <SelectTrigger className="bg-background/50">
-                    <SelectValue placeholder="Select your interest" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Computer Vision">Computer Vision</SelectItem>
-                    <SelectItem value="Natural Language Processing">
-                      Natural Language Processing
-                    </SelectItem>
-                    <SelectItem value="Deep Learning">Deep Learning</SelectItem>
-                    <SelectItem value="MLOps">MLOps & Deployment</SelectItem>
-                    <SelectItem value="Reinforcement Learning">
-                      Reinforcement Learning
-                    </SelectItem>
-                    <SelectItem value="General ML">General ML</SelectItem>
-                  </SelectContent>
-                </Select>
+                  className="bg-background/50"
+                  maxLength={100}
+                />
               </div>
 
               <Button
@@ -278,7 +322,7 @@ const RegistrationSection = () => {
                     Registering...
                   </>
                 ) : (
-                  "Register for ML Efficient"
+                  "Register for ML Efficient 3.0"
                 )}
               </Button>
             </form>

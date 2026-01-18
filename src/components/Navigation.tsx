@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
+import ccaLogo from "@/assets/ml-efficient-logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,7 +52,7 @@ const Navigation = () => {
               <span className="text-primary-foreground font-bold text-lg">ML</span>
             </div>
             <span className="text-foreground font-semibold text-lg hidden sm:block">
-              ML Efficient
+              ML Efficient 3.0
             </span>
           </a>
 
@@ -72,6 +73,30 @@ const Navigation = () => {
             >
               Register Now
             </Button>
+            
+            {/* CCA & R&D Instagram Links */}
+            <div className="flex items-center gap-2">
+              <a
+                href="https://www.instagram.com/cca.nitd?igsh=eWNxMHlhZzcxMHRn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                aria-label="CCA Instagram"
+                title="CCA Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/rnd_cca.nitd?igsh=MTU2ZWtydDFvb3Vvbw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-secondary hover:bg-secondary/10 transition-colors"
+                aria-label="R&D Cell Instagram"
+                title="R&D Cell Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -102,6 +127,24 @@ const Navigation = () => {
               >
                 Register Now
               </Button>
+              <div className="flex items-center gap-2 pt-2">
+                <a
+                  href="https://www.instagram.com/cca.nitd?igsh=eWNxMHlhZzcxMHRn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  <Instagram className="w-4 h-4" /> CCA
+                </a>
+                <a
+                  href="https://www.instagram.com/rnd_cca.nitd?igsh=MTU2ZWtydDFvb3Vvbw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-secondary transition-colors text-sm"
+                >
+                  <Instagram className="w-4 h-4" /> R&D Cell
+                </a>
+              </div>
             </div>
           </div>
         )}

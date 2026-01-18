@@ -1,30 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Youtube, Linkedin, FolderOpen, Image } from "lucide-react";
+import { Users } from "lucide-react";
 
 const PastEventsSection = () => {
   const pastEvents = [
     {
       year: "2025",
       title: "ML Efficient 2.0",
-      description: "Deep dive into neural network pruning and quantization techniques",
+      description: "Building on our foundation, we explored advanced neural network concepts and automation with 69 enthusiastic participants.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-      highlights: ["350+ Participants", "15+ Sessions", "Hackathon Winners"],
+      participants: "69 Participants",
     },
     {
       year: "2024",
       title: "ML Efficient 1.0",
-      description: "Inaugural edition exploring efficient ML fundamentals",
+      description: "Our inaugural edition where we introduced students to the world of Machine Learning, AI, and efficient computing fundamentals.",
       image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
-      highlights: ["200+ Participants", "10+ Workshops", "Research Showcase"],
+      participants: "50 Participants",
     },
-  ];
-
-  const externalLinks = [
-    { icon: Github, label: "GitHub", url: "#", color: "hover:text-foreground" },
-    { icon: Youtube, label: "YouTube", url: "#", color: "hover:text-destructive" },
-    { icon: Linkedin, label: "LinkedIn", url: "#", color: "hover:text-primary" },
-    { icon: FolderOpen, label: "Drive", url: "#", color: "hover:text-accent" },
   ];
 
   return (
@@ -45,7 +37,7 @@ const PastEventsSection = () => {
         </div>
 
         {/* Events Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {pastEvents.map((event) => (
             <Card
               key={event.year}
@@ -72,52 +64,12 @@ const PastEventsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   {event.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {event.highlights.map((highlight) => (
-                    <span
-                      key={highlight}
-                      className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
-                    >
-                      {highlight}
-                    </span>
-                  ))}
+                <div className="flex items-center gap-2 text-primary">
+                  <Users className="w-4 h-4" />
+                  <span className="text-sm font-medium">{event.participants}</span>
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Video Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="glass-card rounded-2xl overflow-hidden border-glow-purple">
-            <div className="aspect-video bg-muted/50 flex items-center justify-center relative">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-secondary/30 transition-colors">
-                  <div className="w-0 h-0 border-t-[15px] border-t-transparent border-l-[25px] border-l-secondary border-b-[15px] border-b-transparent ml-2" />
-                </div>
-                <p className="text-muted-foreground">Watch Event Highlights</p>
-              </div>
-              {/* Placeholder for actual video embed */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-primary/5" />
-            </div>
-          </div>
-        </div>
-
-        {/* External Links */}
-        <div className="flex flex-wrap justify-center gap-4">
-          {externalLinks.map((link) => (
-            <Button
-              key={link.label}
-              variant="outline"
-              className={`border-border/50 ${link.color} transition-colors`}
-              asChild
-            >
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                <link.icon className="w-4 h-4 mr-2" />
-                {link.label}
-                <ExternalLink className="w-3 h-3 ml-2" />
-              </a>
-            </Button>
           ))}
         </div>
       </div>

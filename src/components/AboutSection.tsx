@@ -1,31 +1,31 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Brain, Cpu, Lightbulb, Rocket } from "lucide-react";
+import { Brain, Cpu, Bot, Zap } from "lucide-react";
 
 const AboutSection = () => {
   const features = [
     {
       icon: Brain,
-      title: "Machine Learning Optimization",
+      title: "Machine Learning & Deep Learning",
       description:
-        "Explore cutting-edge techniques to optimize ML models for real-world deployment, from model compression to efficient inference.",
+        "Learn the fundamentals of ML and DL with hands-on projects like handwritten digit recognition using neural networks.",
+    },
+    {
+      icon: Bot,
+      title: "AI Agents & RAG",
+      description:
+        "Build intelligent AI agents using Retrieval Augmented Generation (RAG) to create context-aware applications.",
     },
     {
       icon: Cpu,
-      title: "Efficient Computing",
+      title: "Automation",
       description:
-        "Learn about hardware-aware ML, edge computing, and building systems that scale from embedded devices to cloud infrastructure.",
+        "Master automation concepts and build practical projects that streamline workflows and boost productivity.",
     },
     {
-      icon: Lightbulb,
-      title: "Innovation & Research",
+      icon: Zap,
+      title: "Generative AI",
       description:
-        "Discover the latest research in neural architecture search, AutoML, and techniques that push the boundaries of what's possible.",
-    },
-    {
-      icon: Rocket,
-      title: "Real-World Applications",
-      description:
-        "Bridge theory and practice with hands-on workshops focused on deploying efficient ML systems in production environments.",
+        "Get introduced to the world of Generative AI and understand how it's transforming the tech landscape.",
     },
   ];
 
@@ -38,18 +38,18 @@ const AboutSection = () => {
             About The Event
           </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            What is <span className="text-gradient-cyan">ML Efficient</span>?
+            What is <span className="text-gradient-cyan">ML Efficient 3.0</span>?
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            ML Efficient is a premier 2-day technical event organized by the R&D Cell,
-            bringing together students, researchers, and industry professionals to explore
-            the forefront of efficient machine learning systems.
+            ML Efficient 3.0 is a 2-day hands-on technical workshop organized by the R&D Cell, CCA - NIT Durgapur.
+            This year, we're diving deep into Python, Machine Learning, Deep Learning, AI Agents, Automation, and Generative AI
+            through practical projects and real-world applications.
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {features.map((feature, index) => (
+        {/* Topics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12">
+          {features.map((feature) => (
             <Card
               key={feature.title}
               className="glass-card border-border/50 hover:border-primary/50 transition-all duration-300 group overflow-hidden"
@@ -73,12 +73,27 @@ const AboutSection = () => {
           ))}
         </div>
 
+        {/* Topics Tags */}
+        <div className="text-center mb-8">
+          <p className="text-muted-foreground mb-4">Topics Covered:</p>
+          <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
+            {["Machine Learning", "AI", "Computer Vision", "Gen AI", "Automation", "Python", "Deep Learning"].map((topic) => (
+              <span
+                key={topic}
+                className="glass-card px-4 py-2 rounded-full text-sm text-foreground border border-border/50"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* R&D Cell Info */}
-        <div className="mt-16 text-center">
+        <div className="text-center">
           <div className="inline-flex items-center gap-3 glass-card rounded-full px-6 py-3">
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-muted-foreground">
-              Organized by <span className="text-foreground font-medium">R&D Cell</span>
+              Organized by <span className="text-foreground font-medium">R&D Cell, CCA - NIT Durgapur</span>
             </span>
           </div>
         </div>
