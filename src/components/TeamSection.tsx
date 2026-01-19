@@ -8,15 +8,15 @@ interface TeamMember {
 }
 
 const TeamSection = () => {
-  // All names in CAPS and alphabetical order
+  // Final year: Heads first, then others alphabetically. All names in CAPS.
   const teamData: Record<string, TeamMember[]> = {
     final: [
-      { name: "ABHILASH MAMIDI", role: "EXECUTIVE MEMBER" },
-      { name: "ANISHA KUMARI", role: "EXECUTIVE MEMBER" },
-      { name: "DHARMANA ESWAR SAI", role: "EXECUTIVE MEMBER" },
       { name: "DURBA SINHA", role: "HEAD OF R&D CELL" },
       { name: "SAKSHI YADAV", role: "HEAD OF R&D CELL" },
       { name: "VITAL REDDY", role: "INNOVATION HEAD" },
+      { name: "ABHILASH MAMIDI", role: "EXECUTIVE MEMBER" },
+      { name: "ANISHA KUMARI", role: "EXECUTIVE MEMBER" },
+      { name: "DHARMANA ESWAR SAI", role: "EXECUTIVE MEMBER" },
     ],
     prefinal: [
       { name: "ABHISHEK", role: "SENIOR MEMBER" },
@@ -55,13 +55,13 @@ const TeamSection = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-primary text-sm font-medium uppercase tracking-wider mb-4">
-            The People Behind
+            The Innovators Behind The Magic
           </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            R&D Cell <span className="text-gradient-purple">Team</span>
+            Meet The R&D Cell <span className="text-gradient-purple">Team</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Meet the dedicated team that makes ML Efficient 3.0 possible
+            A passionate team of tech enthusiasts dedicated to making ML Efficient 3.0 an unforgettable learning experience for you!
           </p>
         </div>
 
