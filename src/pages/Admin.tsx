@@ -31,7 +31,8 @@ import {
   Trash2, 
   Users,
   ArrowLeft,
-  RefreshCw
+  RefreshCw,
+  Phone
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { User, Session } from "@supabase/supabase-js";
@@ -40,6 +41,7 @@ interface Registration {
   id: string;
   name: string;
   email: string;
+  phone_number: string | null;
   branch: string;
   section: string | null;
   reg_number: string | null;
@@ -149,11 +151,11 @@ const Admin = () => {
       .update({
         name: editingReg.name,
         email: editingReg.email,
+        phone_number: editingReg.phone_number,
         branch: editingReg.branch,
         section: editingReg.section,
         reg_number: editingReg.reg_number,
         year: editingReg.year,
-        domain_interest: editingReg.domain_interest,
       })
       .eq("id", editingReg.id);
 
@@ -199,15 +201,15 @@ const Admin = () => {
   };
 
   const exportToCSV = () => {
-    const headers = ["Name", "Email", "Branch", "Section", "Reg Number", "Year", "Domain Interest", "Registered At"];
+    const headers = ["Name", "Email", "Phone Number", "Branch", "Section", "Reg Number", "Year", "Registered At"];
     const csvData = registrations.map(reg => [
       reg.name,
       reg.email,
+      reg.phone_number || "",
       reg.branch,
       reg.section || "",
       reg.reg_number || "",
       reg.year,
-      reg.domain_interest || "",
       new Date(reg.created_at).toLocaleString(),
     ]);
     
@@ -229,6 +231,7 @@ const Admin = () => {
     reg.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     reg.branch.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (reg.phone_number && reg.phone_number.includes(searchTerm)) ||
     (reg.reg_number && reg.reg_number.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
@@ -308,7 +311,7 @@ const Admin = () => {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Search by name, email, branch, or reg number..."
+              placeholder="Search by name, email, phone, branch, or reg number..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-background/50"
@@ -334,11 +337,10 @@ const Admin = () => {
                   <TableRow>
                     <TableHead>Name</TableHead>
                     <TableHead>Email</TableHead>
+                    <TableHead>Phone</TableHead>
                     <TableHead>Branch</TableHead>
                     <TableHead>Section</TableHead>
                     <TableHead>Reg Number</TableHead>
-                    <TableHead>Year</TableHead>
-                    <TableHead>Domain</TableHead>
                     <TableHead>Registered</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
@@ -346,7 +348,7 @@ const Admin = () => {
                 <TableBody>
                   {filteredRegistrations.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                         {searchTerm ? "No registrations found matching your search." : "No registrations yet."}
                       </TableCell>
                     </TableRow>
@@ -355,11 +357,17 @@ const Admin = () => {
                       <TableRow key={reg.id}>
                         <TableCell className="font-medium">{reg.name}</TableCell>
                         <TableCell>{reg.email}</TableCell>
+                        <TableCell>
+                          {reg.phone_number ? (
+                            <span className="flex items-center gap-1">
+                              <Phone className="w-3 h-3" />
+                              {reg.phone_number}
+                            </span>
+                          ) : "-"}
+                        </TableCell>
                         <TableCell>{reg.branch}</TableCell>
                         <TableCell>{reg.section || "-"}</TableCell>
                         <TableCell>{reg.reg_number || "-"}</TableCell>
-                        <TableCell>{reg.year}</TableCell>
-                        <TableCell>{reg.domain_interest || "-"}</TableCell>
                         <TableCell className="text-muted-foreground text-sm">
                           {new Date(reg.created_at).toLocaleDateString()}
                         </TableCell>
@@ -418,6 +426,14 @@ const Admin = () => {
                   onChange={(e) => setEditingReg({ ...editingReg, email: e.target.value })}
                 />
               </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-phone">Phone Number</Label>
+                <Input
+                  id="edit-phone"
+                  value={editingReg.phone_number || ""}
+                  onChange={(e) => setEditingReg({ ...editingReg, phone_number: e.target.value })}
+                />
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="edit-branch">Branch</Label>
@@ -436,30 +452,12 @@ const Admin = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="edit-reg-number">Reg Number</Label>
-                  <Input
-                    id="edit-reg-number"
-                    value={editingReg.reg_number || ""}
-                    onChange={(e) => setEditingReg({ ...editingReg, reg_number: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="edit-year">Year</Label>
-                  <Input
-                    id="edit-year"
-                    value={editingReg.year}
-                    onChange={(e) => setEditingReg({ ...editingReg, year: e.target.value })}
-                  />
-                </div>
-              </div>
               <div className="space-y-2">
-                <Label htmlFor="edit-domain">Domain Interest</Label>
+                <Label htmlFor="edit-reg-number">Reg Number</Label>
                 <Input
-                  id="edit-domain"
-                  value={editingReg.domain_interest || ""}
-                  onChange={(e) => setEditingReg({ ...editingReg, domain_interest: e.target.value })}
+                  id="edit-reg-number"
+                  value={editingReg.reg_number || ""}
+                  onChange={(e) => setEditingReg({ ...editingReg, reg_number: e.target.value })}
                 />
               </div>
             </div>
