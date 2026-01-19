@@ -8,7 +8,7 @@ const PastEventsSection = () => {
       title: "ML Efficient 2.0",
       description: "Building on our foundation, we explored advanced neural network concepts and automation with 69 enthusiastic participants.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-      participants: "69 Participants",
+      participants: "100+ Participants",
     },
     {
       year: "2024",
