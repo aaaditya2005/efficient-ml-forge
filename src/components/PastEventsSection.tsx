@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Zap, Brain } from "lucide-react";
 import mlEfficient2Poster from "@/assets/ml-efficient-2-poster.jpg";
-import mlEfficient1Poster from "@/assets/ml-efficient-logo.png";
+import mlEfficient1Poster from "@/assets/ml-efficient-1-poster.jpg";
 
 const PastEventsSection = () => {
   const pastEvents = [
