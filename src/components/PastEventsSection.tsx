@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Zap, Brain } from "lucide-react";
 import mlEfficient2Poster from "@/assets/ml-efficient-2-poster.jpg";
+import mlEfficient1Poster from "@/assets/ml-efficient-logo.png";
 
 const PastEventsSection = () => {
   const pastEvents = [
@@ -16,7 +17,7 @@ const PastEventsSection = () => {
       year: "2024",
       title: "ML Efficient 1.0",
       description: "Our inaugural edition that sparked the AI revolution at NIT Durgapur. We introduced students to the fundamentals of Machine Learning, data preprocessing, and built their first ML models.",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
+      image: mlEfficient1Poster,
       participants: "60+ Participants",
       highlights: ["ML Fundamentals", "Data Science", "Python Basics"],
     },
@@ -51,7 +52,7 @@ const PastEventsSection = () => {
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60" />

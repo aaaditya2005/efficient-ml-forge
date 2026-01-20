@@ -102,10 +102,10 @@ const TeamSection = () => {
                           <User className="w-10 h-10 text-muted-foreground" />
                         </div>
                       </div>
-                      <h4 className="font-semibold text-sm text-foreground truncate">
+                      <h4 className="font-semibold text-xs sm:text-sm text-foreground break-words leading-tight min-h-[2.5rem] flex items-center justify-center">
                         {member.name}
                       </h4>
-                      <p className="text-xs text-muted-foreground truncate">
+                      <p className="text-xs text-muted-foreground break-words leading-tight">
                         {member.role}
                       </p>
                     </CardContent>

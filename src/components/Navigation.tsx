@@ -41,15 +41,22 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" onClick={() => window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        })} className="flex items-center gap-3 cursor-pointer">
-            <img src={rndLogo} alt="R&D Cell" className="h-10 w-auto" />
-            <span className="text-foreground font-semibold text-lg hidden sm:block">
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://www.instagram.com/rnd_cca.nitd?igsh=MTU2ZWtydDFvb3Vvbw==" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img src={rndLogo} alt="R&D Cell" className="h-10 w-auto" />
+            </a>
+            <a href="#" onClick={() => window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            })} className="text-foreground font-semibold text-lg hidden sm:block cursor-pointer hover:text-primary transition-colors">
               ML Efficient 3.0
-            </span>
-          </a>
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
