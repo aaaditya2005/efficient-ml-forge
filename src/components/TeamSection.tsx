@@ -136,17 +136,17 @@ const TeamSection = () => {
 
           {Object.entries(teamData).map(([year, members]) => <TabsContent key={year} value={year} className="mt-0">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
-                {members.map(member => <Card key={member.name} className="glass-card border-border/50 group hover:border-primary/50 transition-all duration-300 overflow-hidden">
+                {members.map(member => <Card key={member.name} className="glass-card border-border/50 group hover:border-primary/50 transition-all duration-300">
                     <CardContent className="p-4 text-center">
                       <div className="relative mb-3">
                         <div className="w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-border/50 group-hover:border-primary/50 transition-all duration-300 group-hover:glow-cyan bg-muted/50 flex items-center justify-center">
                           <User className="w-10 h-10 text-muted-foreground" />
                         </div>
                       </div>
-                      <h4 className="font-semibold text-sm text-foreground truncate">
+                      <h4 className="max-w-full overflow-visible font-semibold text-[11px] sm:text-sm text-foreground leading-snug break-words whitespace-normal">
                         {member.name}
                       </h4>
-                      <p className="text-xs text-muted-foreground truncate">
+                      <p className="mt-1 max-w-full overflow-visible text-[10px] sm:text-xs text-muted-foreground leading-snug break-words whitespace-normal">
                         {member.role}
                       </p>
                     </CardContent>
