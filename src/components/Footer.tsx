@@ -30,9 +30,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">ML</span>
-              </div>
+              
               <span className="text-foreground font-semibold text-lg">ML Efficient 3.0</span>
             </div>
             <p className="text-muted-foreground text-sm max-w-xs">
