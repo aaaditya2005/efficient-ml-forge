@@ -37,7 +37,7 @@ const HeroSection = () => {
         </h1>
 
         {/* Tagline */}
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4">"AIML is Future and Build Future-Ready skills with us!"</p>
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4">"AIML is Future and Build Future-Ready Skills with us!"</p>
         
         {/* Event Date */}
         <p className="text-lg text-primary font-medium mb-8">
